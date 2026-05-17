@@ -105,7 +105,7 @@ const Navbar = () => {
 
           {/* REGISTER */}
           <Link
-            href="/register"
+            href="/signup"
             className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 
             text-white font-medium transition shadow-md shadow-emerald-500/20"
           >
@@ -178,7 +178,7 @@ const Navbar = () => {
               </Link>
 
               <Link
-                href="/register"
+                href="/signup"
                 onClick={() => setOpen(false)}
                 className="flex-1 text-center py-3 rounded-xl bg-emerald-500 
                 hover:bg-emerald-600 text-white"

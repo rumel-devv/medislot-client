@@ -10,7 +10,7 @@ const geistSans = Geist({
 });
 
 export const metadata = {
-  title: "DocAppoint",
+  title: "MediSolt | Digital Appointment Syestem",
   description: "Doctor Appointment System",
 };
 
