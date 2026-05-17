@@ -25,23 +25,33 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-white/80 backdrop-blur-md dark:bg-[#0F172A] border-b dark:border-gray-800 shadow-sm text-gray-900 dark:text-white">
+    <nav className="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#0B1220]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-sm">
 
-      {/* CONTAINER REMOVED → w-10/12 USED */}
-      <div className="w-10/12 mx-auto flex items-center justify-between h-16">
+      {/* CONTAINER */}
+      <div className="w-11/12 lg:w-10/12 mx-auto flex items-center justify-between h-16">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-[#088F8F] flex items-center justify-center text-white font-bold">
+        <Link href="/" className="flex items-center gap-3">
+
+          <div className="w-10 h-10 rounded-2xl bg-emerald-500 flex items-center justify-center text-white font-bold shadow-md shadow-emerald-500/30">
             M
           </div>
-          <h1 className="text-xl font-bold text-[#088F8F]">
-            Medislot
-          </h1>
+
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+              Medi<span className="text-emerald-500">solt</span>
+            </h1>
+
+            <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-1">
+              Healthcare Platform
+            </p>
+          </div>
+
         </Link>
 
         {/* DESKTOP LINKS */}
-        <div className="hidden md:flex gap-8 font-medium">
+        <div className="hidden md:flex items-center gap-7 font-medium">
+
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
 
@@ -49,105 +59,135 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`transition px-2 py-1 rounded-md ${
+                className={`relative transition duration-300 pb-1 ${
                   isActive
-                    ? "text-[#088F8F] font-semibold border-b-2 border-[#088F8F]"
-                    : "text-gray-700 dark:text-gray-300 hover:text-[#088F8F]"
+                    ? "text-emerald-500"
+                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-500"
                 }`}
               >
                 {link.name}
+
+                {isActive && (
+                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-emerald-500 rounded-full" />
+                )}
               </Link>
             );
           })}
+
         </div>
 
         {/* RIGHT SIDE */}
         <div className="hidden md:flex items-center gap-3">
 
+          {/* THEME BUTTON */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:scale-105 transition"
+            className="w-10 h-10 rounded-xl flex items-center justify-center 
+            bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white 
+            hover:scale-105 transition"
           >
             {theme === "light" ? (
-              <FiMoon />
+              <FiMoon size={18} />
             ) : (
-              <FiSun className="text-yellow-400" />
+              <FiSun size={18} className="text-yellow-400" />
             )}
           </button>
 
+          {/* LOGIN */}
           <Link
             href="/login"
-            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="px-5 py-2.5 rounded-xl border border-emerald-500/30 
+            text-emerald-600 dark:text-emerald-400 
+            hover:bg-emerald-50 dark:hover:bg-white/10 transition"
           >
             Login
           </Link>
 
+          {/* REGISTER */}
           <Link
             href="/register"
-            className="px-4 py-2 bg-[#088F8F] text-white rounded-lg hover:opacity-90"
+            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 
+            text-white font-medium transition shadow-md shadow-emerald-500/20"
           >
             Register
           </Link>
+
         </div>
 
-        {/* MOBILE */}
-        <div className="md:hidden flex items-center gap-3">
+        {/* MOBILE RIGHT */}
+        <div className="md:hidden flex items-center gap-2">
 
-          <button onClick={toggleTheme} className="text-xl">
-            {theme === "light" ? <FiMoon /> : <FiSun className="text-yellow-500" />}
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 rounded-xl flex items-center justify-center 
+            bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white"
+          >
+            {theme === "light" ? (
+              <FiMoon size={18} />
+            ) : (
+              <FiSun size={18} className="text-yellow-400" />
+            )}
           </button>
 
           <button
             onClick={() => setOpen(!open)}
-            className="text-2xl text-[#088F8F]"
+            className="w-9 h-9 rounded-xl flex items-center justify-center 
+            bg-emerald-500 text-white"
           >
-            {open ? <FiX /> : <FiMenu />}
+            {open ? <FiX size={20} /> : <FiMenu size={20} />}
           </button>
-        </div>
 
+        </div>
       </div>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden w-10/12 mx-auto pb-4 space-y-3 bg-white dark:bg-[#0F172A]">
+        <div className="md:hidden border-t border-gray-200 dark:border-white/10 bg-white dark:bg-[#0B1220]">
 
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+          <div className="w-11/12 mx-auto py-5 space-y-2">
 
-            return (
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`block px-4 py-3 rounded-xl transition ${
+                    isActive
+                      ? "bg-emerald-500 text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+
+            {/* MOBILE BUTTONS */}
+            <div className="flex gap-3 pt-3">
+
               <Link
-                key={link.name}
-                href={link.href}
+                href="/login"
                 onClick={() => setOpen(false)}
-                className={`block py-2 rounded-md px-2 ${
-                  isActive
-                    ? "text-[#088F8F] font-semibold bg-[#088F8F]/10"
-                    : "text-gray-700 dark:text-gray-300"
-                }`}
+                className="flex-1 text-center py-3 rounded-xl border border-emerald-500/30 
+                text-emerald-600 dark:text-emerald-400"
               >
-                {link.name}
+                Login
               </Link>
-            );
-          })}
 
-          <div className="flex gap-3 pt-2">
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="flex-1 text-center border border-gray-300 dark:border-gray-700 py-2 rounded-lg"
-            >
-              Login
-            </Link>
+              <Link
+                href="/register"
+                onClick={() => setOpen(false)}
+                className="flex-1 text-center py-3 rounded-xl bg-emerald-500 
+                hover:bg-emerald-600 text-white"
+              >
+                Register
+              </Link>
 
-            <Link
-              href="/register"
-              onClick={() => setOpen(false)}
-              className="flex-1 text-center bg-[#088F8F] text-white py-2 rounded-lg"
-            >
-              Register
-            </Link>
+            </div>
           </div>
-
         </div>
       )}
     </nav>
