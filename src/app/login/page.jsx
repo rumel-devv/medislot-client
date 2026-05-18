@@ -11,11 +11,35 @@ import {
 
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const LoginUpPage = () => {
+ const router = useRouter()
+const handleLogin = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+    const {email, password } = user;
+    // console.log(user);
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+    });
+   if(data){
+      router.push('/')
+      toast.success('Login  Successfull')  
+    }
+    if(error){
+     toast.error(error?.message || "Registation  Failed");
+    }
+
+}
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4">
-      <Form className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
+      <Form onSubmit={handleLogin} className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
         {/* TITLE */}
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
          Login Your Account

@@ -1,21 +1,40 @@
 "use client";
-
-import {
-  // Button,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  TextField,
-} from "@heroui/react";
+import { FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
+  const router = useRouter()
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+    const { name, email, photo, password } = user;
+    console.log(user);
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      photo
+    });
+   if(data){
+      router.push('/login')
+      toast.success('Registation Successfull')  
+    }
+    if(error){
+     toast.error(error?.message || "Registation  Failed");
+    }
+
+
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4">
-      <Form className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
+      <Form onSubmit={handleSignUp} className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
         {/* TITLE */}
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
           Create Account
@@ -75,14 +94,14 @@ const SignUpPage = () => {
         <div className="flex gap-3 pt-2">
           <button
             type="submit"
-            className="flex-1 bg-emerald-600 rounded-md text-white hover:bg-emerald-600"
+            className="flex-1 cursor-pointer bg-emerald-600 rounded-md text-white hover:bg-emerald-600"
           >
             Submit
           </button>
 
           <button
             type="reset"
-            className="flex-1 bg-emerald-800 py-1 rounded-md text-white hover:bg-emerald-600"
+            className="flex-1 cursor-pointer bg-emerald-800 py-1 rounded-md text-white hover:bg-emerald-600"
           >
             Reset
           </button>
@@ -98,7 +117,7 @@ const SignUpPage = () => {
         {/* GOOGLE LOGIN */}
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-2 border 
+          className="w-full cursor-pointer flex items-center justify-center gap-2 border 
           border-gray-300 dark:border-gray-700 
           py-2 rounded-lg 
           hover:bg-gray-100 dark:hover:bg-gray-800 
