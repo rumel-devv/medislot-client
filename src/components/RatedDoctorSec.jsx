@@ -9,21 +9,21 @@ const RatedDoctorSec = async () => {
     .slice(0, 3);
 
   return (
-    <div className="w-9/12 mx-auto py-10">
+    <div className="w-full md:w-10/12 lg:w-9/12 mx-auto py-8 px-4">
       
       {/* Section Header */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-xl md:text-3xl  font-bold">
           Top Rated Doctors
         </h1>
 
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 mt-2 text-md ">
           Meet our highest-rated specialist doctors
         </p>
       </div>
 
       {/* Doctors Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3  gap-6 ">
         
         {topRatedDoctors.map((doctor) => <DoctorCard  key={doctor._id} doctor={doctor} /> )}
       </div>
