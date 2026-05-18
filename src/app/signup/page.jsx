@@ -21,7 +21,7 @@ const handleGoogle = async() => {
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
     const { name, email, photo, password } = user;
-    console.log(user);
+    // console.log(user);
     const { data, error } = await authClient.signUp.email({
       name,
       email,

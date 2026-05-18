@@ -3,7 +3,7 @@ import { doctorsData } from "@/lib/data";
 
 const AllAppointPage = async () => {
   const doctors = await doctorsData();
-  console.log(doctors);
+  // console.log(doctors);
   return (
    <div className="w-full px-4 md:w-10/12 mx-auto py-10">
 

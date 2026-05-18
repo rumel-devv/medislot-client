@@ -1,3 +1,4 @@
+import BookingModal from "@/components/BookingModal";
 import { doctorsDetailsData } from "@/lib/data";
 import Image from "next/image";
 import React from "react";
@@ -15,7 +16,7 @@ const DoctorDetailsPage = async ({ params }) => {
 
   const doctor = await doctorsDetailsData(id);
 
-  console.log(doctor);
+  // console.log(doctor);
 
   return (
    <div className="w-full min-h-screen flex items-center justify-center p-4 md:p-8 bg-gray-50 dark:bg-[#0B1220] transition-colors duration-300">
@@ -125,9 +126,7 @@ const DoctorDetailsPage = async ({ params }) => {
       </div>
 
  
-      <button className="mt-auto w-full md:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-xl transition shadow-md">
-        Book Appointment
-      </button>
+     <BookingModal/>
 
     </div>
   </div>

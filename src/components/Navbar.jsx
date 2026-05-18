@@ -25,7 +25,7 @@ const Navbar = () => {
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     setMounted(true);
