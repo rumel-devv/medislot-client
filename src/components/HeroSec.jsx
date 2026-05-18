@@ -32,7 +32,6 @@ export default function HeroBanner() {
     <>
       <section className="w-full bg-white dark:bg-[#0B1220] transition-colors duration-300 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 md:py-14">
-
           <Swiper
             modules={[Autoplay, Pagination, Navigation]}
             autoplay={{ delay: 4500 }}
@@ -43,8 +42,6 @@ export default function HeroBanner() {
             {slides.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="relative w-full h-[380px] sm:h-[450px] md:h-[520px] lg:h-[580px]">
-
-       
                   <div
                     className="absolute inset-0 bg-cover bg-center scale-105"
                     style={{
@@ -52,58 +49,45 @@ export default function HeroBanner() {
                     }}
                   />
 
-              
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 dark:from-black/80 dark:via-black/60 dark:to-transparent" />
 
-           
                   <div className="relative z-10 h-full flex items-center">
-
                     <div className="max-w-xl px-5 sm:px-10 md:px-14 text-white">
-
-                 
                       <span className="inline-flex items-center mb-3 px-3 py-1 text-xs sm:text-sm rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
                         Medisolt Health Platform
                       </span>
 
-                 
                       <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
                         {item.title}
                       </h1>
 
-            
                       <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-200">
                         {item.desc}
                       </p>
 
-            
                       <div className="mt-5 flex flex-col sm:flex-row gap-3">
-
                         <Link
-                          href="/doctors"
+                          href="/all-appoint"
                           className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl font-medium transition text-center"
                         >
                           Find Doctors
                         </Link>
 
                         <Link
-                          href="/appointments"
+                          href="/all-appoint"
                           className="border border-white/40 text-white hover:bg-white/10 px-5 py-3 rounded-xl font-medium transition text-center"
                         >
                           Book Appointment
                         </Link>
-
                       </div>
-
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-
         </div>
       </section>
-
     </>
   );
 }
