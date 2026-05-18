@@ -1,10 +1,57 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaCalendarCheck } from "react-icons/fa6";
 
 const BookingModal = () => {
-  const [appointDate, setAppointDate] = useState(null);
+//   const [appointDate, setAppointDate] = useState(null);
+//   console.log(new Date(appointDate));
+  const router = useRouter();
+  const {data : session} = authClient.useSession()
+  const user = session?.user
+//  console.log(user);
+  
+ const handleBooking = async (e) => {
+      e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const bookingData = {
+      patientName: formData.get("patientName"),
+      gender: formData.get("gender"),
+      phone: formData.get("phone"),
+      appointmentDate: new Date (formData.get("appointmentDate")),
+      appointmentTime: formData.get("appointmentTime"),
+      doctorName: formData.get("doctorName"),
+      email: user?.email,
+    };
+
+    // console.log(bookingData);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    });
+       const data = await res.json();
+
+    // console.log(data);
+
+    if (data) {
+      toast.success('Appointment bokked successfully');
+      form.reset();
+      router.refresh()
+    }
+
+ }
+
+
+   
+
   return (
     <div>
       <Modal>
@@ -32,13 +79,13 @@ const BookingModal = () => {
               {/* Body */}
               <Modal.Body className="p-3 max-h-[80vh] overflow-y-auto">
                 <Surface variant="default">
-                  <form className="space-y-6 border border-emerald-200 rounded-2xl p-4 sm:p-8">
+                  <form onSubmit={handleBooking} className="space-y-6 border border-emerald-200 rounded-2xl p-4 sm:p-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Patient Name */}
                       <div className="md:col-span-2">
                         <TextField name="patientName" isRequired>
                           <Label>Patient Name</Label>
-                          <Input placeholder="Rahim Uddin" />
+                          <Input placeholder="Nawab Khan" />
                         </TextField>
                       </div>
 
@@ -51,7 +98,6 @@ const BookingModal = () => {
                           required
                           className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-emerald-500"
                         >
-                          <option value="">Select Gender</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                           <option value="Other">Other</option>
@@ -65,7 +111,7 @@ const BookingModal = () => {
                       </TextField>
 
                       {/* Appointment Date */}
-                      <TextField name="appointmentDate" isRequired>
+                      <TextField name="appointmentDate"  isRequired>
                         <Label>Appointment Date</Label>
                         <Input type="date" />
                       </TextField>
@@ -80,7 +126,7 @@ const BookingModal = () => {
                       <div className="md:col-span-2">
                         <TextField name="doctorName" isRequired>
                           <Label>Doctor Name</Label>
-                          <Input placeholder="Dr. Ayesha Rahman" />
+                          <Input placeholder="Dr. Abdur Rahman" />
                         </TextField>
                       </div>
                     </div>
