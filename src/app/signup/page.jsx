@@ -1,125 +1,126 @@
 "use client";
 
-import Link from "next/link";
+import {
+  // Button,
+  FieldError,
+  Form,
+  Input,
+  Label,
+  TextField,
+} from "@heroui/react";
+
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
-export default function RegisterPage() {
+const SignUpPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4 py-10 transition-colors">
-
-      <div className="w-full max-w-md bg-white dark:bg-[#111827] shadow-lg rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800">
-
-        {/* Title */}
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 dark:text-white mb-5 sm:mb-6">
-          Register
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4">
+      <Form className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
+        {/* TITLE */}
+        <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
+          Create Account
         </h1>
 
-        {/* Form */}
-        <form className="space-y-4">
+        {/* NAME */}
+        <TextField isRequired name="name" type="text">
+          <Label className="text-gray-700 dark:text-gray-200">Name</Label>
+          <Input placeholder="Enter your name" />
+          <FieldError />
+        </TextField>
 
-          {/* Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-              Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              className="w-full mt-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg 
-              bg-white dark:bg-gray-900 
-              text-gray-900 dark:text-white
-              border-gray-300 dark:border-gray-700
-              focus:outline-none focus:ring-2 focus:ring-emerald-400"
-            />
-          </div>
+        {/* PHOTO URL */}
+        <TextField isRequired name="photo" type="text">
+          <Label className="text-gray-700 dark:text-gray-200">Photo URL</Label>
+          <Input placeholder="Enter photo URL" />
+          <FieldError />
+        </TextField>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-              Email
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full mt-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg 
-              bg-white dark:bg-gray-900 
-              text-gray-900 dark:text-white
-              border-gray-300 dark:border-gray-700
-              focus:outline-none focus:ring-2 focus:ring-emerald-400"
-            />
-          </div>
+        {/* EMAIL */}
+        <TextField isRequired name="email" type="email">
+          <Label className="text-gray-700 dark:text-gray-200">Email</Label>
+          <Input placeholder="john@example.com" />
+          <FieldError />
+        </TextField>
 
-          {/* Photo URL */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-              Photo URL
-            </label>
-            <input
-              type="text"
-              placeholder="Enter photo URL"
-              className="w-full mt-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg 
-              bg-white dark:bg-gray-900 
-              text-gray-900 dark:text-white
-              border-gray-300 dark:border-gray-700
-              focus:outline-none focus:ring-2 focus:ring-emerald-400"
-            />
-          </div>
+        {/* PASSWORD */}
+        <TextField
+          isRequired
+          minLength={6}
+          name="password"
+          type="password"
+          validate={(value) => {
+            if (!value) return "Password is required";
 
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full mt-1 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg 
-              bg-white dark:bg-gray-900 
-              text-gray-900 dark:text-white
-              border-gray-300 dark:border-gray-700
-              focus:outline-none focus:ring-2 focus:ring-emerald-400"
-            />
-          </div>
+            if (value.length < 6) {
+              return "Password must be at least 6 characters";
+            }
 
-          {/* Register Button */}
+            if (!/[A-Z]/.test(value)) {
+              return "Must contain at least one uppercase letter";
+            }
+
+            if (!/[a-z]/.test(value)) {
+              return "Must contain at least one lowercase letter";
+            }
+
+            return null;
+          }}
+        >
+          <Label className="text-gray-700 dark:text-gray-200">Password</Label>
+          <Input placeholder="Enter your password" />
+          <FieldError />
+        </TextField>
+
+        {/* BUTTONS */}
+        <div className="flex gap-3 pt-2">
           <button
             type="submit"
-            className="w-full bg-emerald-400 text-white py-2.5 sm:py-3 rounded-lg 
-            hover:bg-emerald-500 active:scale-[0.98] transition font-medium text-sm sm:text-base"
+            className="flex-1 bg-emerald-600 rounded-md text-white hover:bg-emerald-600"
           >
-            Register
+            Submit
           </button>
-        </form>
 
-        {/* Divider */}
-        <div className="my-5 sm:my-6 flex items-center gap-3">
-          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
-          <span className="text-xs sm:text-sm text-gray-400">OR</span>
-          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+          <button
+            type="reset"
+            className="flex-1 bg-emerald-800 py-1 rounded-md text-white hover:bg-emerald-600"
+          >
+            Reset
+          </button>
         </div>
 
-        {/* Google Signup */}
-        <button className="w-full flex items-center justify-center gap-2 border 
-        border-gray-300 dark:border-gray-700 
-        py-2.5 sm:py-3 rounded-lg 
-        hover:bg-gray-100 dark:hover:bg-gray-800 
-        active:scale-[0.98]
-        text-gray-700 dark:text-white transition text-sm sm:text-base">
+        {/* DIVIDER */}
+        <div className="flex items-center gap-2 my-2">
+          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+          <span className="text-xs text-gray-400">OR</span>
+          <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+        </div>
+
+        {/* GOOGLE LOGIN */}
+        <button
+          type="button"
+          className="w-full flex items-center justify-center gap-2 border 
+          border-gray-300 dark:border-gray-700 
+          py-2 rounded-lg 
+          hover:bg-gray-100 dark:hover:bg-gray-800 
+          transition text-gray-700 dark:text-white"
+        >
           <FcGoogle className="text-xl" />
           Continue with Google
         </button>
 
-        {/* Login Link */}
-        <p className="text-xs sm:text-sm text-center mt-5 sm:mt-6 text-gray-600 dark:text-gray-300">
+        {/* LOGIN LINK */}
+        <p className="text-sm text-center text-gray-600 dark:text-gray-300 mt-2">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-emerald-400 hover:underline font-medium"
+            className="text-emerald-500 hover:underline font-medium"
           >
             Login
           </Link>
         </p>
-      </div>
+      </Form>
     </div>
   );
-}
+};
+
+export default SignUpPage;
