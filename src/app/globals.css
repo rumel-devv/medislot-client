@@ -11,16 +11,4 @@ body.dark {
   background: #141212;
   color: white;
 }
-.heroSwiper .swiper-button-next::after,
-.heroSwiper .swiper-button-prev::after {
-  font-size: 2px !important;
-  /* font-weight: bold; */
-}
 
-/* Hide arrows on mobile */
-@media (max-width: 640px) {
-  .heroSwiper .swiper-button-next,
-  .heroSwiper .swiper-button-prev {
-    display: none !important;
-  }
-}

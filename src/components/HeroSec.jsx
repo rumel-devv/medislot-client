@@ -37,7 +37,6 @@ export default function HeroBanner() {
             modules={[Autoplay, Pagination, Navigation]}
             autoplay={{ delay: 4500 }}
             pagination={{ clickable: true }}
-            navigation
             loop
             className="rounded-3xl overflow-hidden heroSwiper"
           >

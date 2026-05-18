@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaUserDoctor } from "react-icons/fa6";
 import {
   FiFacebook,
   FiGithub,
@@ -22,10 +23,10 @@ const Footer = () => {
         <div className="space-y-5">
 
           {/* LOGO */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
 
             <div className="w-11 h-11 rounded-2xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/30">
-              M
+         <FaUserDoctor/>
             </div>
 
             <div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
 import { useTheme } from "@/app/providers/ThemeProvider";
+import { FaUserDoctor } from "react-icons/fa6";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "All Appoint", href: "/all-appoint" },
+    { name: "All Appointment", href: "/all-appoint" },
     { name: "Dashboard", href: "/dashboard" },
   ];
 
@@ -31,10 +32,10 @@ const Navbar = () => {
       <div className="w-11/12 lg:w-10/12 mx-auto flex items-center justify-between h-16">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2">
 
-          <div className="w-10 h-10 rounded-2xl bg-emerald-500 flex items-center justify-center text-white font-bold shadow-md shadow-emerald-500/30">
-            M
+          <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold shadow-md shadow-emerald-500/30">
+           <FaUserDoctor/>
           </div>
 
           <div>
