@@ -17,6 +17,12 @@ import toast from "react-hot-toast";
 
 const LoginUpPage = () => {
  const router = useRouter()
+ const handleGoogle = async() => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+}
+
 const handleLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -91,6 +97,7 @@ const handleLogin = async (e) => {
         {/* GOOGLE LOGIN */}
         <button
           type="button"
+          onClick={handleGoogle}
           className="w-full flex items-center justify-center gap-2 border 
           border-gray-300 dark:border-gray-700 
           py-2 rounded-lg 
