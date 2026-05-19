@@ -144,6 +144,7 @@ const BookingModal = () => {
 
                       <Button
                         type="submit"
+                        slot='close'
                         className="w-full sm:w-1/2 bg-emerald-600 text-white hover:bg-emerald-700"
                       >
                         Confirm Appointment

@@ -1,13 +1,7 @@
-'use client';
+"use client";
 
 import { authClient } from "@/lib/auth-client";
-import {
-  Button,
-  Input,
-  Label,
-  Modal,
-  Surface,
-} from "@heroui/react";
+import { Button, Input, Label, Modal, Surface } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FiEdit } from "react-icons/fi";
@@ -17,41 +11,36 @@ const UpdateProfileModal = ({ user }) => {
   const router = useRouter();
   console.log(name);
 
- 
+  const handleEdit = async (e) => {
+    e.preventDefault();
 
-const handleEdit = async (e) => {
-  e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
 
-  const formData = new FormData(e.currentTarget);
-  const userData = Object.fromEntries(formData.entries());
-
-  try {
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
         },
-        body: JSON.stringify(userData),
-      }
-    );
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-
-    toast.success("Profile Updated Successfully ");
-    router.refresh()
-  } catch (error) {
-    console.error(error);
-    toast.error("Something went wrong ");
-  }
-};
+      toast.success("Profile Updated Successfully ");
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong ");
+    }
+  };
 
   return (
     <Modal>
- 
       <Modal.Trigger>
         <button className="w-full border border-emerald-600 px-4 py-3 rounded-xl flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
           <FiEdit />
@@ -77,7 +66,6 @@ const handleEdit = async (e) => {
                   onSubmit={handleEdit}
                   className="space-y-5 border border-emerald-200 rounded-2xl p-5"
                 >
-
                   {/* Name */}
                   <div className="w-full">
                     <Label>Full Name</Label>
@@ -102,7 +90,6 @@ const handleEdit = async (e) => {
 
                   {/* Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-
                     <div className="w-full sm:w-1/2">
                       <Button
                         type="reset"
@@ -121,13 +108,10 @@ const handleEdit = async (e) => {
                         Save Changes
                       </Button>
                     </div>
-
                   </div>
-
                 </form>
               </Surface>
             </Modal.Body>
-
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
