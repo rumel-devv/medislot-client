@@ -20,6 +20,7 @@ const BookingModal = () => {
     const formData = new FormData(form);
 
     const bookingData = {
+       userId:user?.id,
       patientName: formData.get("patientName"),
       gender: formData.get("gender"),
       phone: formData.get("phone"),
@@ -38,13 +39,14 @@ const BookingModal = () => {
       body: JSON.stringify(bookingData),
     });
        const data = await res.json();
+     
+    console.log(data);
 
-    // console.log(data);
-
-    if (data) {
-      toast.success('Appointment bokked successfully');
+      if (data.insertedId) {
+      toast.success("Appointment booked successfully ");
       form.reset();
-      router.refresh()
+    } else {
+      toast.error(data?.message || "Booking failed ");
     }
 
  }
