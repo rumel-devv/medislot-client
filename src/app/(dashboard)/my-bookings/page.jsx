@@ -1,3 +1,4 @@
+import DeleteAlert from "@/components/AlertDialog";
 import UpdatePaitientInfo from "@/components/UpdatePaitientInfo";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -97,11 +98,7 @@ const MybookingsPage = async () => {
 
                 <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto">
                  <UpdatePaitientInfo bookings={booking} />
-
-                  <button className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium transition w-full">
-                    <FiTrash2 />
-                    Delete
-                  </button>
+                 <DeleteAlert booking={booking}/>
                 </div>
               </div>
             </div>

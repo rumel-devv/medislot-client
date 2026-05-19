@@ -116,7 +116,9 @@ const Navbar = () => {
                 className="flex items-center gap-3 px-3 py-2 rounded-xl 
               "
               >
-                <Avatar className="w-11 object-cover h-11 ring-2 ring-emerald-500/30">
+                <Link href='/dashboard'>
+
+                <Avatar className="w-11 cursor-pointer object-cover h-11 ring-2 ring-emerald-500/30">
                   <Avatar.Image
                     alt={user?.name}
                     src={user?.image}
@@ -127,6 +129,8 @@ const Navbar = () => {
                     {user?.name?.slice(0, 2).toUpperCase() || "US"}
                   </Avatar.Fallback>
                 </Avatar>
+                </Link>
+
               </div>
 
               <button
@@ -221,18 +225,20 @@ const Navbar = () => {
                     className="flex items-center gap-3 mb-4 p-3 rounded-2xl 
                     bg-gray-100 dark:bg-white/10"
                   >
-                    <Avatar className="w-12 h-12 ring-2 ring-emerald-500/30">
+                    <Link href='/dashboard'>
+                    <Avatar className="w-12 h-12 cursor-pointer ring-2 ring-emerald-500/30">
                       <Avatar.Image
                         className="w-full h-full object-cover"
                         alt={user?.name || "User"}
                         src={user?.image}
                       />
-
+                    
                       <Avatar.Fallback className="bg-emerald-500 text-white font-semibold">
                         {user?.name?.slice(0, 2).toUpperCase() || "US"}
                       </Avatar.Fallback>
                     </Avatar>
-
+                    </Link>
+                    
                     <div>
                       <h3 className="text-sm font-semibold text-gray-800 dark:text-white">
                         {user?.name}

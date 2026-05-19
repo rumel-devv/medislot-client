@@ -56,10 +56,10 @@ const UpdatePaitientInfo = ({ bookings }) => {
     <div>
       <Modal>
         <Modal.Trigger>
-          <button className="w-full border border-emerald-600 px-4 py-3 rounded-xl flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
+          <Button className="w-full border border-emerald-600 px-4 py-3 rounded-xl flex justify-center items-center gap-2 cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
             <FiEdit />
             Update Appointment
-          </button>
+          </Button>
         </Modal.Trigger>
 
         <Modal.Backdrop>
@@ -152,6 +152,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
 
                       <Button
                         type="submit"
+                        slot='close'
                         className="w-full sm:w-1/2 bg-emerald-600 text-white"
                       >
                         Save Changes

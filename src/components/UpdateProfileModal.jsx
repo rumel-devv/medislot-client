@@ -39,7 +39,7 @@ const handleEdit = async (e) => {
     );
 
     const data = await res.json();
-    console.log("data", data);
+
 
     toast.success("Profile Updated Successfully ");
     router.refresh()
@@ -115,6 +115,7 @@ const handleEdit = async (e) => {
                     <div className="w-full sm:w-1/2">
                       <Button
                         type="submit"
+                        slot="close"
                         className="w-full bg-emerald-600 text-white hover:bg-emerald-700"
                       >
                         Save Changes
