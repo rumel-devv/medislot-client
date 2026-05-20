@@ -13,7 +13,14 @@ import {
   FiStar,
 } from "react-icons/fi";
 
-// export const dynamic = "force-dynamic";
+export async function generateMetadata() {
+  return {
+    title: "Doctor Details | Medisolt",
+    description:
+      "View doctor profile, experience, and book an appointment easily on Medisolt.",
+    keywords: ["doctor profile", "appointment", "Medisolt doctor details"],
+  };
+}
 
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;

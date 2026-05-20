@@ -3,6 +3,13 @@ import DoctorSearch from "@/components/DoctorSearch";
 import { doctorsData, doctorsSearch } from "@/lib/data";
 import { FaSearch } from "react-icons/fa";
 
+export const metadata = {
+  title: "Doctors | Medisolt",
+  description:
+    "Browse qualified doctors by specialty and book your appointment instantly on Medisolt.",
+  keywords: ["doctors", "specialists", "Medisolt doctors", "medical booking"],
+};
+
 const AllAppointPage = async ({searchParams}) => {
   const sParams = await searchParams
   

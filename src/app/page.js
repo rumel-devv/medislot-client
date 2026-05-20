@@ -5,6 +5,7 @@ import HeroBanner from "@/components/HeroSec";
 import RatedDoctorSec from "@/components/RatedDoctorSec";
 
 
+
 export default function Home() {
   return (
     <>

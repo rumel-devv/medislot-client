@@ -11,8 +11,8 @@ const geistSans = Geist({
 });
 
 export const metadata = {
-  title: "MediSolt | Digital Appointment Syestem",
-  description: "Doctor Appointment System",
+  title: "Medisolt - Doctor Appointment",
+  description: "Book doctor appointments easily with Medisolt.",
 };
 
 export default function RootLayout({ children }) {
