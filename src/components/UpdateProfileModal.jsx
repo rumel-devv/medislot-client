@@ -15,9 +15,8 @@ const UpdateProfileModal = ({ user }) => {
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-    console.log(userData);
-    // const {data:tokenData} = await authClient.token()
-    // console.log(tokenData);
+    // console.log(userData);
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`,
@@ -25,7 +24,6 @@ const UpdateProfileModal = ({ user }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            //  authorization: `Bearer ${tokenData?.token}`
           },
           body: JSON.stringify(userData),
         },

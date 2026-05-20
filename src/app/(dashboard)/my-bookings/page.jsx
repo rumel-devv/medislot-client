@@ -21,16 +21,11 @@ const MybookingsPage = async () => {
 
   const user = session?.user;
 
-  //   const { token } = await auth.api.getToken({
-  //   headers: await headers(),
-  // });
+
 
   const res = await fetch(
   `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${user?.id}`,
   {
-    // headers: {
-    //   authorization: `Bearer ${token}`,
-    // },
     cache: "no-store",
   }
 );
