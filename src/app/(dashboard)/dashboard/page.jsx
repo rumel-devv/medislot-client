@@ -1,7 +1,8 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import { FiCalendar, FiUser, FiPlusCircle } from "react-icons/fi";
+
 
 const DashboardPage = () => {
   return (
@@ -15,7 +16,7 @@ const DashboardPage = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6">
         <Link href="/my-bookings" className="group relative">
           <div className="p-[1px] rounded-2xl bg-gradient-to-r from-emerald-400/40 to-teal-500/40 hover:from-emerald-500 hover:to-teal-600 transition">
             <div

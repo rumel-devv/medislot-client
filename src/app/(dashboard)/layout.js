@@ -14,7 +14,7 @@ export default function DashLayout({ children }) {
       <div className="min-h-screen w-full md:w-9/12 mx-auto bg-gray-50 dark:bg-gray-950 flex">
         <aside
           className="
-    w-64
+    w-80 
     bg-white dark:bg-gray-900
     border-r border-gray-200 dark:border-gray-800
     p-6 hidden md:block

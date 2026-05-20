@@ -9,7 +9,7 @@ const RatedDoctorSec = async () => {
     .slice(0, 3);
 
   return (
-    <div className="w-full md:w-10/12 lg:w-9/12 mx-auto py-8 px-4">
+    <div className="w-full md:w-12/12 lg:w-9/12 mx-auto py-8 px-4">
       <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
         <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-100 px-4 py-1.5 mb-4">
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>

@@ -7,6 +7,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
+
 const SignUpPage = () => {
   const router = useRouter()
 
@@ -43,6 +44,7 @@ const handleGoogle = async() => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4">
       <Form onSubmit={handleSignUp} className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
         {/* TITLE */}
+          
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
           Create Account
         </h1>

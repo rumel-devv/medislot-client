@@ -5,7 +5,9 @@ A full-stack Doctor Appointment Management System built to simplify the process 
 This project demonstrates real-world full-stack development using Next.js, Express, and MongoDB with proper REST API integration.
 
 ---
+## 🌐 Live Website
 
+🔗 Live Site: https://medislot-client.vercel.app
 
 ## 🛠️ Tech Stack
 

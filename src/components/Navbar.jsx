@@ -60,7 +60,7 @@ const Navbar = () => {
 
           <div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              Medi<span className="text-emerald-500">solt</span>
+              Medi<span className="text-emerald-500">Solt</span>
             </h1>
 
             <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-1">
@@ -111,7 +111,7 @@ const Navbar = () => {
           </button>
 
           {user ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <div
                 className="flex items-center gap-3 px-3 py-2 rounded-xl 
               "
@@ -222,7 +222,7 @@ const Navbar = () => {
               {user ? (
                 <>
                   <div
-                    className="flex items-center gap-3 mb-4 p-3 rounded-2xl 
+                    className="flex items-center gap-1 mb-4 p-3 rounded-2xl 
                     bg-gray-100 dark:bg-white/10"
                   >
                     <Link href='/dashboard'>
