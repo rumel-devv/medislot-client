@@ -9,14 +9,15 @@ import { FiEdit } from "react-icons/fi";
 const UpdateProfileModal = ({ user }) => {
   const { image, name, id } = user;
   const router = useRouter();
-  console.log(name);
 
   const handleEdit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-
+    console.log(userData);
+    // const {data:tokenData} = await authClient.token()
+    // console.log(tokenData);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`,
@@ -24,6 +25,7 @@ const UpdateProfileModal = ({ user }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            //  authorization: `Bearer ${tokenData?.token}`
           },
           body: JSON.stringify(userData),
         },
@@ -31,6 +33,11 @@ const UpdateProfileModal = ({ user }) => {
 
       const data = await res.json();
 
+      await authClient.updateUser({
+         name: userData?.name,
+        image: userData?.image,
+      });
+      //  console.log(data);
       toast.success("Profile Updated Successfully ");
       router.refresh();
     } catch (error) {
@@ -73,7 +80,7 @@ const UpdateProfileModal = ({ user }) => {
                       name="name"
                       defaultValue={name}
                       placeholder="Enter your name"
-                      className="w-full"
+                      className="w-full dark:bg-gray-800 dark:text-white"
                     />
                   </div>
 
@@ -84,7 +91,7 @@ const UpdateProfileModal = ({ user }) => {
                       name="image"
                       defaultValue={image}
                       placeholder="https://example.com/image.jpg"
-                      className="w-full"
+                      className="w-full dark:bg-gray-800 dark:text-white"
                     />
                   </div>
 

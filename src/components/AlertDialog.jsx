@@ -1,22 +1,25 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FiTrash2 } from "react-icons/fi";
 
-const DeleteAlert = ({ booking }) => {
+const DeleteAlert =  ({ booking }) => {
   const { doctorName, _id } = booking;
 
   const router = useRouter()
-
+ 
   const handleDelete = async () => {
+    //  const {data:tokenData} = await authClient.token()
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${_id}`,
       {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          //  authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(),
       },

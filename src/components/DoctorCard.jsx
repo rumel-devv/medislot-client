@@ -86,7 +86,7 @@ const DoctorCard = ({ doctor }) => {
               whileTap={{ scale: 0.97 }}
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="flex h-10 items-center gap-2 rounded-md bg-emerald-500 px-5 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition-colors duration-300 hover:bg-emerald-600"
+              className="flex h-10 items-center gap-2 rounded-md bg-emerald-500 px-5 text-sm font-semibold text-white cursor-pointer shadow-lg shadow-emerald-200 transition-colors duration-300 hover:bg-emerald-600"
             >
               Details
               <FiArrowUpRight className="text-lg" />

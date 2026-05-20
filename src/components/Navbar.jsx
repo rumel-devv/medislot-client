@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <nav
       className="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#0B1220]/90 
-      backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-sm"
+      backdrop-blur-xl border-b  border-gray-200 dark:border-white/10 shadow-sm"
     >
       <div className="w-11/12 lg:w-10/12 mx-auto flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2">

@@ -2,6 +2,8 @@ import DeleteAlert from "@/components/AlertDialog";
 import UpdatePaitientInfo from "@/components/UpdatePaitientInfo";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Link from "next/link";
+import { BiArrowBack } from "react-icons/bi";
 import {
   FiCalendar,
   FiClock,
@@ -19,12 +21,19 @@ const MybookingsPage = async () => {
 
   const user = session?.user;
 
+  //   const { token } = await auth.api.getToken({
+  //   headers: await headers(),
+  // });
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${user?.id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${user?.id}`,
+  {
+    // headers: {
+    //   authorization: `Bearer ${token}`,
+    // },
+    cache: "no-store",
+  }
+);
 
   const bookings = await res.json();
 
@@ -40,6 +49,13 @@ const MybookingsPage = async () => {
             Total Bookings: {bookings?.length || 0}
           </p>
         </div>
+         <Link
+                  href="/dashboard"
+                  className="inline-flex md:hidden items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition whitespace-nowrap"
+                >
+                  <BiArrowBack  className="text-lg shrink-0" />
+                  <span>Back to dashboard</span>
+                </Link>
 
         <div className="grid gap-5">
           {bookings?.map((booking) => (
@@ -114,6 +130,11 @@ const MybookingsPage = async () => {
             <p className="text-gray-500 dark:text-gray-300 mt-2">
               You have no booked any appointments yet.
             </p>
+            <Link href='all-appoint'>
+             <button className="bg-emerald-600 text-white py-2 px-4 mt-2 rounded-md cursor-pointer hover:bg-emerald-500 " >
+              Book Now
+             </button>
+            </Link>
           </div>
         )}
       </div>

@@ -13,30 +13,22 @@ import {
   FiStar,
 } from "react-icons/fi";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
-
-  // Get Token
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
+  // console.log(id);
 
   // Fetch Doctor Data
   const res = await fetch(
-    `http://localhost:5000/doctors/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`,
     {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
       cache: "no-store",
     }
   );
 
   const doctor = await res.json();
-
-  console.log(doctor);
+  console.log('details data',doctor);
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center p-4 md:p-8 bg-gray-50 dark:bg-[#0B1220] transition-colors duration-300">
@@ -46,8 +38,8 @@ const DoctorDetailsPage = async ({ params }) => {
         {/* Doctor Image */}
         <div className="relative h-72 md:h-full min-h-[320px]">
           <Image
-            src={doctor.image}
-            alt={doctor.doctorName}
+            src={doctor?.image}
+            alt={doctor?.doctorName}
             fill
             className="object-cover"
           />

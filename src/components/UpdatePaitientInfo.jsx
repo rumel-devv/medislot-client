@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -25,7 +26,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
 
   const formData = new FormData(e.currentTarget);
   const userData = Object.fromEntries(formData.entries());
-
+  // const {data:tokenData} = await authClient.token()
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${_id}`,
@@ -33,6 +34,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          //  authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(userData),
       }
@@ -81,7 +83,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                 <Surface>
                   <form
                     onSubmit={handleInfoUpdate}
-                    className="space-y-5 border border-emerald-100 rounded-2xl p-5 bg-white"
+                    className="space-y-5 border border-emerald-100 rounded-2xl p-5 bg-white dark:bg-gray-900 text-black dark:text-white"
                   >
                     {/* Doctor Name */}
                     <div>
@@ -89,7 +91,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                       <Input
                         defaultValue={doctorName}
                         readOnly
-                        className="w-full bg-gray-100 cursor-not-allowed"
+                         className="w-full bg-gray-100 cursor-not-allowed dark:bg-gray-800 dark:text-white"
                       />
                     </div>
 
@@ -99,7 +101,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                       <Input
                         name="patientName"
                         defaultValue={patientName}
-                        className="w-full"
+                       className="w-full dark:bg-gray-800 dark:text-white"
                       />
                     </div>
 
@@ -109,7 +111,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                       <Input
                         name="phone"
                         defaultValue={phone}
-                        className="w-full"
+                        className="w-full dark:bg-gray-800 dark:text-white"
                       />
                     </div>
 
@@ -137,7 +139,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                         type="time"
                         name="appointmentTime"
                         defaultValue={appointmentTime}
-                        className="w-full"
+                        className="w-full dark:bg-gray-800 dark:text-white"
                       />
                     </div>
 
@@ -145,7 +147,7 @@ const UpdatePaitientInfo = ({ bookings }) => {
                     <div className="flex flex-col sm:flex-row gap-3 pt-3">
                       <Button
                         type="reset"
-                        className="w-full sm:w-1/2 bg-gray-200 text-gray-800"
+                        className="w-full dark:bg-gray-200 dark:text-black sm:w-1/2 bg-gray-900 text-gray-200"
                       >
                         Reset
                       </Button>
