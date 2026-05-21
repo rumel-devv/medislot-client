@@ -6,9 +6,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaCalendarCheck } from "react-icons/fa6";
 
-const BookingModal = () => {
-  //   const [appointDate, setAppointDate] = useState(null);
-  //   console.log(new Date(appointDate));
+const BookingModal = ({doctor}) => {
+ 
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -18,7 +17,7 @@ const BookingModal = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-
+    const doctorName = `${doctor?.name}` ;
     const bookingData = {
       userId: user?.id,
       patientName: formData.get("patientName"),
@@ -26,11 +25,11 @@ const BookingModal = () => {
       phone: formData.get("phone"),
       appointmentDate: new Date(formData.get("appointmentDate")),
       appointmentTime: formData.get("appointmentTime"),
-      doctorName: formData.get("doctorName"),
+      doctorName,
       email: user?.email,
     };
-
-    // console.log(bookingData);
+     
+    // console.log(doctorName);
       const {data: tokenData} = await authClient.token()
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`,
@@ -165,11 +164,13 @@ const BookingModal = () => {
                     <Label className="dark:text-white">
                       Doctor Name
                     </Label>
-
-                    <Input
+                    <p>
+                    {doctor?.name}
+                    </p>
+                    {/* <Input
                       placeholder="Dr. Abdur Rahman"
                       className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-xl"
-                    />
+                    /> */}
                   </TextField>
                 </div>
               </div>

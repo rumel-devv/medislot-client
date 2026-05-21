@@ -90,7 +90,8 @@ const UpdatePaitientInfo = ({ bookings }) => {
                     {/* Doctor Name */}
                     <div>
                       <Label>Doctor Name</Label>
-                      <Input
+                   
+                      <input
                         defaultValue={doctorName}
                         readOnly
                          className="w-full bg-gray-100 cursor-not-allowed dark:bg-gray-800 dark:text-white"

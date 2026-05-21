@@ -60,11 +60,11 @@ const DoctorDetailsPage = async ({ params }) => {
           {/* Header */}
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {doctor.doctorName}
+              {doctor?.name}
             </h1>
 
             <p className="text-emerald-600 dark:text-emerald-400 font-semibold text-lg mt-1">
-              {doctor.specialty}
+              {doctor?.specialty}
             </p>
 
             <div className="flex flex-wrap gap-2 mt-4">
