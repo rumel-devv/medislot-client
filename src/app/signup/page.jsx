@@ -7,15 +7,14 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-
 const SignUpPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-const handleGoogle = async() => {
-  const data = await authClient.signIn.social({
-    provider: "google",
-  });
-}
+  const handleGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -27,24 +26,26 @@ const handleGoogle = async() => {
       name,
       email,
       password,
-      image:photo
+      image: photo,
     });
-   if(data){
-      router.push('/login')
-      toast.success('Registation Successfull')  
+    if (data) {
+      await authClient.signOut();
+      router.push("/login");
+      toast.success("Registation Successfull");
     }
-    if(error){
-     toast.error(error?.message || "Registation  Failed");
+    if (error) {
+      toast.error(error?.message || "Registation  Failed");
     }
-
-
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0F172A] px-4">
-      <Form onSubmit={handleSignUp} className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5">
+      <Form
+        onSubmit={handleSignUp}
+        className="w-full max-w-md bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col gap-5"
+      >
         {/* TITLE */}
-          
+
         <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
           Create Account
         </h1>
